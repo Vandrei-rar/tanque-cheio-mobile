@@ -43,7 +43,7 @@ class RegisterPage extends StatelessWidget {
                   onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterPostoPage()),
+                    MaterialPageRoute(builder: (context) => RegistroPosto()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

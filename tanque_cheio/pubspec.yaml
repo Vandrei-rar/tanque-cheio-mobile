@@ -63,6 +63,8 @@ flutter:
     - assets/imgs/primeiro.svg
     - assets/imgs/icone-tipo-posto.png
     - assets/imgs/icone-tipo-condutor.png
+    - assets/imgs/google.png
+    - assets/imgs/facebook.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

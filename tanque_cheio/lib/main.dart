@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';  // Importe o pacote gestures.dart
+import 'package:flutter/gestures.dart';
 import 'register_page.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color(0xFFC20606),
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFFFC700)),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFFFC700)),
         scaffoldBackgroundColor: Colors.white,
       ),
       home: LoginPage(),
@@ -18,7 +19,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _obscurePassword = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
+  }
+
   void _login(BuildContext context) {
     // Implemente a ação para o botão de entrar
     // Aqui você colocará a lógica de autenticação
@@ -96,14 +110,15 @@ class LoginPage extends StatelessWidget {
                       labelStyle: TextStyle(color: Colors.black),
                       border: InputBorder.none,
                     ),
-                    obscureText: true,
+                    obscureText: _obscurePassword,
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.visibility),
-                  onPressed: () {
-                    // Implemente a lógica para mostrar/ocultar a senha
-                  },
+                  icon: Icon(
+                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.black,
+                  ),
+                  onPressed: _togglePasswordVisibility,
                 ),
               ],
             ),
@@ -197,18 +212,52 @@ class LoginPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  icon: Icon(Icons.ac_unit),
-                  onPressed: () {
-                    // Implemente a ação para acessar com o Google
-                  },
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Cor de fundo que desejar
+                    borderRadius: BorderRadius.circular(
+                        10), // Opcional: Adicione cantos arredondados
+                    boxShadow: [
+                      BoxShadow(
+                        color:
+                            Color.fromARGB(255, 226, 226, 226), // Cor da sombra
+                        offset: Offset(0,
+                            2), // Deslocamento horizontal e vertical da sombra
+                        blurRadius: 4, // Raio do desfoque da sombra
+                        spreadRadius: 1, // Espalhamento da sombra
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Image.asset('assets/imgs/google.png'),
+                    onPressed: () {
+                      // Implemente a ação para acessar com o Google
+                    },
+                  ),
                 ),
                 SizedBox(width: 20.0),
-                IconButton(
-                  icon: Icon(Icons.access_alarm),
-                  onPressed: () {
-                    // Implemente a ação para acessar com o Facebook
-                  },
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Cor de fundo que desejar
+                    borderRadius: BorderRadius.circular(
+                        10), // Opcional: Adicione cantos arredondados
+                    boxShadow: [
+                      BoxShadow(
+                        color:
+                            Color.fromARGB(255, 226, 226, 226), // Cor da sombra
+                        offset: Offset(0,
+                            2), // Deslocamento horizontal e vertical da sombra
+                        blurRadius: 4, // Raio do desfoque da sombra
+                        spreadRadius: 1, // Espalhamento da sombra
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Image.asset('assets/imgs/facebook.png'),
+                    onPressed: () {
+                      // Implemente a ação para acessar com o Google
+                    },
+                  ),
                 ),
               ],
             ),
