@@ -63,8 +63,10 @@ flutter:
     - assets/imgs/bannerlogin.png
     - assets/imgs/bannerlogin-v2.png
     - assets/imgs/primeiro.svg
-    - assets/imgs/icone-tipo-posto.png
-    - assets/imgs/icone-tipo-condutor.png
+    # - assets/imgs/icone-tipo-posto.png
+    # - assets/imgs/icone-tipo-condutor.png
+    - assets/imgs/img-tipo-condutor.jpg
+    - assets/imgs/img-tipo-posto.jpg
     - assets/imgs/google.png
     - assets/imgs/facebook.png
     - assets/imgs/primeiro-home.png
