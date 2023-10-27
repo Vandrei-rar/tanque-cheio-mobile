@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'register_page.dart';
+import 'main.dart';
 
 class SliderScreen extends StatefulWidget {
   const SliderScreen({super.key});
@@ -8,21 +10,35 @@ class SliderScreen extends StatefulWidget {
   State<SliderScreen> createState() => _SliderScreenState();
 }
 
+void _navigateToRegister(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => RegisterPage()),
+  );
+}
+
+void _main(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MyApp()),
+  );
+}
+
 class _SliderScreenState extends State<SliderScreen> {
   List imageList = [
-    {"id": 1, "image_path": 'assets/images/banner.png'},
-    {"id": 2, "image_path": 'assets/images/bestsellersbanner.png'},
-    {"id": 3, "image_path": 'assets/images/banner.png'}
+    {"id": 1, "image_path": 'assets/imgs/primeiro-home.png'},
+    {"id": 2, "image_path": 'assets/imgs/segundo-home.png'},
+    {"id": 3, "image_path": 'assets/imgs/terceiro-home.png'}
   ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Slider Example"),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: const Text("Slider Example"),
+      // ),
       body: Column(children: [
         Stack(
           children: [
@@ -43,6 +59,7 @@ class _SliderScreenState extends State<SliderScreen> {
                 carouselController: carouselController,
                 options: CarouselOptions(
                   scrollPhysics: const BouncingScrollPhysics(),
+                  height: 600,
                   autoPlay: true,
                   aspectRatio: 2,
                   viewportFraction: 1,
@@ -72,14 +89,64 @@ class _SliderScreenState extends State<SliderScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: currentIndex == entry.key
-                              ? Colors.red
-                              : Colors.teal),
+                              ? Colors.white
+                              : Colors.white),
                     ),
                   );
                 }).toList(),
               ),
             ),
           ],
+        ),
+        SizedBox(height: 30.0),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white,
+              onPrimary: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              shadowColor: Colors.grey[400],
+              elevation: 5.0,
+            ),
+            child: Text(
+              'Entrar',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.0),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              _navigateToRegister(context);
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFFFFC700),
+              onPrimary: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              shadowColor: Colors.grey[400],
+              elevation: 5.0,
+            ),
+            child: Text(
+              'Cadastre-se',
+              style: TextStyle(
+                fontWeight: FontWeight.bold, // Correto
+                fontSize: 15,
+              ),
+            ),
+          ),
         ),
       ]),
     );

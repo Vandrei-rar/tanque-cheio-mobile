@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'register_page.dart';
+import 'home.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,6 +43,13 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RegisterPage()),
+    );
+  }
+
+  void _home(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SliderScreen()),
     );
   }
 
@@ -148,6 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () {
                     // Implemente a ação para "Esqueceu a senha"
+                    _home(context);
                   },
                   style: TextButton.styleFrom(primary: Colors.red),
                   child: Text('Esqueceu a senha?'),
@@ -158,9 +167,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  _login(context);
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFFFFC700),
                   onPrimary: Colors.black,
