@@ -35,10 +35,6 @@ class _SliderScreenState extends State<SliderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: const Text("Slider Example"),
-      // ),
       body: Column(children: [
         Stack(
           children: [
@@ -49,10 +45,16 @@ class _SliderScreenState extends State<SliderScreen> {
               child: CarouselSlider(
                 items: imageList
                     .map(
-                      (item) => Image.asset(
-                        item['image_path'],
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                      (item) => ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(10),
+                          bottom: Radius.circular(30),
+                        ),
+                        child: Image.asset(
+                          item['image_path'],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
                       ),
                     )
                     .toList(),
@@ -81,8 +83,8 @@ class _SliderScreenState extends State<SliderScreen> {
                   return GestureDetector(
                     onTap: () => carouselController.animateToPage(entry.key),
                     child: Container(
-                      width: currentIndex == entry.key ? 17 : 7,
-                      height: 7.0,
+                      width: currentIndex == entry.key ? 45 : 11,
+                      height: 11.0,
                       margin: const EdgeInsets.symmetric(
                         horizontal: 3.0,
                       ),
@@ -98,52 +100,62 @@ class _SliderScreenState extends State<SliderScreen> {
             ),
           ],
         ),
-        SizedBox(height: 30.0),
+        SizedBox(height: 20.0),
         SizedBox(
           width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              onPrimary: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: 20.0), // Adicione margens internas aqui
+            child: ElevatedButton(
+              onPressed: () {
+                _navigateToRegister(context);
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                shadowColor: Colors.grey[400],
+                elevation: 5.0,
               ),
-              padding: EdgeInsets.symmetric(vertical: 20.0),
-              shadowColor: Colors.grey[400],
-              elevation: 5.0,
-            ),
-            child: Text(
-              'Entrar',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
+              child: Text(
+                'Entrar',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: 20.0),
         SizedBox(
           width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              _navigateToRegister(context);
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xFFFFC700),
-              onPrimary: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: 20.0), // Adicione margens internas aqui
+            child: ElevatedButton(
+              onPressed: () {
+                _navigateToRegister(context);
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFFC700),
+                onPrimary: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                shadowColor: Colors.grey[400],
+                elevation: 5.0,
               ),
-              padding: EdgeInsets.symmetric(vertical: 20.0),
-              shadowColor: Colors.grey[400],
-              elevation: 5.0,
-            ),
-            child: Text(
-              'Cadastre-se',
-              style: TextStyle(
-                fontWeight: FontWeight.bold, // Correto
-                fontSize: 15,
+              child: Text(
+                'Cadastre-se',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
               ),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'register_page.dart';
+import 'home.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,6 +46,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void _home(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SliderScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,138 +71,171 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  'Acesse sua conta',
+                  style: TextStyle(
+                    color: Color(0xFF000000),
+                    fontFamily: 'MADE TOMMY',
+                    fontSize: 25.0,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 20.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(11.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    blurRadius: 3.0,
-                    offset: Offset(0, 2),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(11.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 3.0,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'E-mail',
+                    labelStyle: TextStyle(color: Colors.black),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(11.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 3.0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        labelText: 'Senha',
+                        labelStyle: TextStyle(color: Colors.black),
+                        border: InputBorder.none,
+                      ),
+                      obscureText: _obscurePassword,
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Colors.black,
+                    ),
+                    onPressed: _togglePasswordVisibility,
                   ),
                 ],
               ),
-              child: TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  labelText: 'E-mail',
-                  labelStyle: TextStyle(color: Colors.black),
-                  border: InputBorder.none,
-                ),
-              ),
             ),
             SizedBox(height: 10.0),
-            Stack(
-              alignment: Alignment.centerRight,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(11.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        blurRadius: 3.0,
-                        offset: Offset(0, 2),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Checkbox(
+                          value: false,
+                          onChanged: (value) {},
+                          checkColor: Colors.white,
+                          activeColor: Colors.transparent,
+                        ),
+                      ),
+                      Text(
+                        'Lembrar acesso',
+                        style: TextStyle(color: Color(0xFF828282)),
                       ),
                     ],
                   ),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      labelStyle: TextStyle(color: Colors.black),
-                      border: InputBorder.none,
-                    ),
-                    obscureText: _obscurePassword,
+                  TextButton(
+                    onPressed: () {
+                      // Implemente a ação para "Esqueceu a senha"
+                      _home(context);
+                    },
+                    style: TextButton.styleFrom(primary: Colors.red),
+                    child: Text('Esqueceu a senha?'),
                   ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.black,
-                  ),
-                  onPressed: _togglePasswordVisibility,
-                ),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Checkbox(
-                        value: false,
-                        onChanged: (value) {},
-                        checkColor: Colors.white,
-                        activeColor: Colors.transparent,
-                      ),
-                    ),
-                    Text(
-                      'Lembrar acesso',
-                      style: TextStyle(color: Color(0xFF828282)),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Implemente a ação para "Esqueceu a senha"
-                  },
-                  style: TextButton.styleFrom(primary: Colors.red),
-                  child: Text('Esqueceu a senha?'),
-                ),
-              ],
-            ),
-            SizedBox(height: 30.0),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  _login(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFFFC700),
-                  onPrimary: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  shadowColor: Colors.grey[400],
-                  elevation: 5.0,
-                ),
-                child: Text('Entrar'),
+                ],
               ),
             ),
-            SizedBox(height: 10.0),
-            Align(
-              alignment: Alignment.center,
-              child: RichText(
-                text: TextSpan(
-                  text: 'Ainda não tem cadastro? ',
-                  style: TextStyle(color: Color(0xFF828282)),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Cadastre-se',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 30.0),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFFFFC700),
+                        onPrimary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        shadowColor: Colors.grey[400],
+                        elevation: 5.0,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          _navigateToRegister(context);
-                        },
+                      child: Text('Entrar'),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Align(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Ainda não tem cadastro? ',
+                        style: TextStyle(color: Color(0xFF828282)),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Cadastre-se',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _navigateToRegister(context);
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 20.0),

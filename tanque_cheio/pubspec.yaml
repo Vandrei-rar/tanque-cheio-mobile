@@ -30,12 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mask_text_input_formatter: ^2.5.0  # Use a versão compatível
+  carousel_slider: ^4.2.1
+  cupertino_icons: ^1.0.2
+  mask_text_input_formatter: ^2.5.0
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -62,10 +63,15 @@ flutter:
     - assets/imgs/bannerlogin.png
     - assets/imgs/bannerlogin-v2.png
     - assets/imgs/primeiro.svg
-    - assets/imgs/icone-tipo-posto.png
-    - assets/imgs/icone-tipo-condutor.png
+    # - assets/imgs/icone-tipo-posto.png
+    # - assets/imgs/icone-tipo-condutor.png
+    - assets/imgs/img-tipo-condutor.jpg
+    - assets/imgs/img-tipo-posto.jpg
     - assets/imgs/google.png
     - assets/imgs/facebook.png
+    - assets/imgs/primeiro-home.png
+    - assets/imgs/segundo-home.png
+    - assets/imgs/terceiro-home.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -93,7 +99,4 @@ flutter:
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  #         weight:
