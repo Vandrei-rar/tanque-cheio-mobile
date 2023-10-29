@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanque_cheio/register_posto.dart';
+import 'package:tanque_cheio/register_condutor.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class RegisterPage extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                  onPressed: () {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => RegistroPosto()),
@@ -66,8 +67,16 @@ class RegisterPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset('assets/imgs/icone-tipo-posto.png', height: 100, width: 100),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10), // Raio máximo de 10
+                          ),
+                          child: Image.asset(
+                            'assets/imgs/img-tipo-posto.jpg',
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit
+                                .cover, // Ajustar a imagem ao tamanho do ClipRRect
+                          ),
                         ),
                       ),
                       SizedBox(width: 20),
@@ -85,7 +94,10 @@ class RegisterPage extends StatelessWidget {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  //a ação para tipo de cadastro "Condutor"
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegistroCondutor()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFFC20606),
@@ -107,8 +119,16 @@ class RegisterPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset('assets/imgs/icone-tipo-condutor.png', height: 100, width: 100),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10), // Raio máximo de 10
+                          ),
+                          child: Image.asset(
+                            'assets/imgs/img-tipo-condutor.jpg',
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit
+                                .cover, // Ajustar a imagem ao tamanho do ClipRRect
+                          ),
                         ),
                       ),
                       SizedBox(width: 20),
