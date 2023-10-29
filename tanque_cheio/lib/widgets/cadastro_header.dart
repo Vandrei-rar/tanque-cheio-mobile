@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CadastroHeader extends StatelessWidget {
-  final String title; // Adicionando parâmetro 'title'
-  final String description; // Adicionando parâmetro 'description'
+  final String title;
+  final String description;
 
   const CadastroHeader({
     required this.title,
@@ -14,7 +14,7 @@ class CadastroHeader extends StatelessWidget {
     return Column(
       children: [
         Text(
-          title, // Usando o título fornecido
+          title,
           style: TextStyle(
             color: Color(0xFF000000),
             fontFamily: 'MADE TOMMY',
@@ -26,7 +26,7 @@ class CadastroHeader extends StatelessWidget {
         ),
         SizedBox(height: 16.0),
         Text(
-          description, // Usando a descrição fornecida
+          description,
           style: TextStyle(
             color: Color(0xFF828282),
             fontFamily: 'MADE TOMMY',
