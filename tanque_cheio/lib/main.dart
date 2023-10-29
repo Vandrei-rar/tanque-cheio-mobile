@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'register_page.dart';
 import 'home.dart';
+import 'home_main_posto.dart';
+import 'widgets/api_login.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color(0xFFC20606),
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFFFC700)),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFFFC700)),
         scaffoldBackgroundColor: Colors.white,
       ),
       home: LoginPage(),
@@ -27,6 +28,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscurePassword = true;
+  TextEditingController emailController = TextEditingController(); // Controlador para o campo de e-mail
+  TextEditingController senhaController = TextEditingController(); // Controlador para o campo de senha
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -34,10 +37,46 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _login(BuildContext context) {
-    // Implemente a ação para o botão de entrar
-    // Aqui você colocará a lógica de autenticação
+void _login(BuildContext context) async {
+  final email = emailController.text;
+  final senha = senhaController.text;
+
+  try {
+    bool autenticacaoBemSucedida = await realizarAutenticacao(email, senha);
+
+    if (autenticacaoBemSucedida) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeMainPosto()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Falha na autenticação. Verifique suas credenciais.'),
+        ),
+      );
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Erro: $e'), // Exibe a mensagem de erro capturada
+      ),
+    );
   }
+}
+
+
+Future<bool> realizarAutenticacao(String email, String senha) async {
+  final response = await loginUser(email, senha);
+
+  if (response != null) {
+    // A resposta foi bem-sucedida
+    return true;
+  } else {
+    // A resposta foi nula, indica uma falha na autenticaçãooo
+    return false;
+  }
+}
 
   void _navigateToRegister(BuildContext context) {
     Navigator.push(
@@ -104,6 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 child: TextFormField(
+                  controller: emailController,
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     labelText: 'E-mail',
@@ -133,6 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     child: TextFormField(
+                      controller: senhaController,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'Senha',
@@ -181,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // Implemente a ação para "Esqueceu a senha"
+                      // ação para "Esqueceu a senha"
                       _home(context);
                     },
                     style: TextButton.styleFrom(primary: Colors.red),
@@ -198,7 +239,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _login(context);
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFFFFC700),
                         onPrimary: Colors.black,
@@ -255,48 +298,42 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white, // Cor de fundo que desejar
-                    borderRadius: BorderRadius.circular(
-                        10), // Opcional: Adicione cantos arredondados
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color:
-                            Color.fromARGB(255, 226, 226, 226), // Cor da sombra
-                        offset: Offset(0,
-                            2), // Deslocamento horizontal e vertical da sombra
-                        blurRadius: 4, // Raio do desfoque da sombra
-                        spreadRadius: 1, // Espalhamento da sombra
+                        color: Color.fromARGB(255, 226, 226, 226), // Cor da sombra
+                        offset: Offset(0, 2),
+                        blurRadius: 4,
+                        spreadRadius: 1,
                       ),
                     ],
                   ),
                   child: IconButton(
                     icon: Image.asset('assets/imgs/google.png'),
                     onPressed: () {
-                      // Implemente a ação para acessar com o Google
+                      // Ação para acessar com o Google
                     },
                   ),
                 ),
                 SizedBox(width: 20.0),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white, // Cor de fundo que desejar
-                    borderRadius: BorderRadius.circular(
-                        10), // Opcional: Adicione cantos arredondados
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color:
-                            Color.fromARGB(255, 226, 226, 226), // Cor da sombra
-                        offset: Offset(0,
-                            2), // Deslocamento horizontal e vertical da sombra
-                        blurRadius: 4, // Raio do desfoque da sombra
-                        spreadRadius: 1, // Espalhamento da sombra
+                        color: Color.fromARGB(255, 226, 226, 226), // Cor da sombra
+                        offset: Offset(0, 2), 
+                        blurRadius: 4,
+                        spreadRadius: 1,
                       ),
                     ],
                   ),
                   child: IconButton(
                     icon: Image.asset('assets/imgs/facebook.png'),
                     onPressed: () {
-                      // Implemente a ação para acessar com o Google
+                      // ação para acessar com o Facebook
                     },
                   ),
                 ),
@@ -308,5 +345,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-// void main() => runApp(MyApp());

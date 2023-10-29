@@ -33,6 +33,13 @@ dependencies:
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   mask_text_input_formatter: ^2.5.0
+  http: ^0.13.3  # Para fazer solicitações HTTP
+  shared_preferences: ^2.0.6  # Para armazenar informações locais
+  # flutter:
+  #   sdk: flutter
+  # carousel_slider: ^4.2.1
+  # cupertino_icons: ^1.0.2
+  # mask_text_input_formatter: ^2.5.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -47,7 +54,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
